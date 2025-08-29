@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Johnson - Full Stack Developer Intern</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            overflow-x: hidden;
+            background: var(--darker-color);
+        }
+
+        /* Custom Colors */
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #5b73f0;
+            --accent-color: #ff6b9d;
+            --dark-color: #0a0e27;
+            --darker-color: #050816;
+            --light-color: #1a1a2e;
+            --text-light: #e4e6ea;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #e637fa 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --neon-glow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(10, 14, 39, 0.95) !important;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 30px rgba(0, 212, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: var(--neon-glow);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            color: var(--text-light) !important;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+            transform: translateY(-2px);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-3);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--dark-color);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 107, 157, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(91, 115, 240, 0.1) 0%, transparent 50%);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(0,212,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: var(--neon-glow);
+        }
+
+        .hero .lead {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+            opacity: 0.9;
+        }
+        .hero a{
+        }
+
+        .btn-custom {
+            background: var(--gradient-2);
+            border: none;
+            /* padding: 15px 35px; */
+            height: 50px;
+            max-width: 300px; 
+            text-align: center !important;          
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s both;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 107, 157, 0.4);
+        }
+
+        .btn-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            text-align: center;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-custom:hover::before {
+            left: 100%;
+        }
+
+        /* Profile Image */
+        .profile-img {
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-color);
+            animation: float 3s ease-in-out infinite;
+            background: var(--gradient-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: white;
+            box-shadow: 
+                0 0 50px rgba(0, 212, 255, 0.3),
+                inset 0 0 50px rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        .profile-img img{
+            height: 500px;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+        }
+
+        .profile-img::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: var(--gradient-3);
+            z-index: -1;
+            filter: blur(10px);
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-3);
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 1px;
+            background: var(--gradient-2);
+            border-radius: 1px;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--light-color);
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 70% 30%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 30% 70%, rgba(255, 107, 157, 0.05) 0%, transparent 50%);
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .skill-item:hover::before {
+            opacity: 0.1;
+        }
+
+        .skill-item i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
+        }
+
+        .skill-item h5,
+        .skill-item p {
+            position: relative;
+            z-index: 2;
+            color: var(--text-light);
+        }
+
+        /* Projects Section */
+        .section {
+            background: var(--darker-color);
+            position: relative;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s ease;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .project-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .project-img {
+            height: 200px;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-content {
+            padding: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .project-content p {
+            color: rgba(228, 230, 234, 0.8);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tech-tag {
+            background: var(--gradient-2);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--light-color);
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 157, 0.1) 0%, transparent 50%);
+        }
+
+        .contact .section-title {
+            color: var(--text-light);
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 35px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 20px;
+            margin-bottom: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .contact-item:hover::before {
+            opacity: 0.1;
+        }
+
+        .contact-item i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-item h5,
+        .contact-item p {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Contact Form Styles */
+        .contact-form-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 25px;
+            padding: 50px;
+            margin-top: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .contact-form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 157, 0.05) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .form-title {
+            color: var(--text-light);
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 15px;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-subtitle {
+            color: rgba(228, 230, 234, 0.8);
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-form {
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-light);
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            padding: 15px 20px;
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .form-group input:focus + .form-bar,
+        .form-group select:focus + .form-bar,
+        .form-group textarea:focus + .form-bar {
+            width: 100%;
+            background: var(--gradient-3);
+        }
+
+        .form-group input:focus ~ label,
+        .form-group select:focus ~ label,
+        .form-group textarea:focus ~ label {
+            color: var(--primary-color);
+        }
+
+        .form-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-3);
+            transition: width 0.3s ease;
+            border-radius: 1px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: var(--dark-color);
+            color: var(--text-light);
+            padding: 10px;
+        }
+
+        /* Custom Checkbox */
+        .checkbox-group {
+            margin: 30px 0;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: rgba(228, 230, 234, 0.9);
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 0;
+        }
+
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-container:hover input ~ .checkmark {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+
+        .checkbox-container input:checked ~ .checkmark {
+            background: var(--gradient-3);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .checkbox-container .checkmark:after {
+            left: 6px;
+            top: 2px;
+            width: 6px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        /* Form Actions */
+        .form-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            color: var(--primary-color);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline-custom:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.2);
+        }
+
+        .btn-custom {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-custom:hover .btn-icon {
+            transform: translateX(5px);
+        }
+
+        /* Success Message */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 15px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-success.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .form-success i {
+            font-size: 3rem;
+            color: #22c55e;
+            margin-bottom: 15px;
+        }
+
+        .form-success h4 {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .form-success p {
+            color: rgba(228, 230, 234, 0.8);
+            margin: 0;
+        }
+
+        /* Form Validation */
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: #ef4444;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* Loading State */
+        .btn-custom.loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .btn-custom.loading .btn-text {
+            opacity: 0;
+        }
+
+        .btn-custom.loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design for Form */
+        @media (max-width: 768px) {
+            .contact-form-container {
+                padding: 30px 20px;
+                margin-top: 30px;
+            }
+            
+            .form-title {
+                font-size: 1.5rem;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-custom,
+            .btn-outline-custom {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Skills Progress Section */
+        .skills-progress {
+            background: var(--darker-color);
+            position: relative;
+        }
+
+        .skills-progress::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255, 107, 157, 0.08) 0%, transparent 50%);
+        }
+
+        .skill-progress-item {
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .skill-header h5 {
+            color: var(--text-light);
+            font-weight: 600;
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .skill-percentage {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .skill-bar {
+            position: relative;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .skill-range {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: var(--gradient-3);
+            border-radius: 25px;
+            position: relative;
+            transition: width 2s ease-in-out;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .skill-fill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .skill-progress-item:hover .skill-fill {
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+            transform: scaleY(1.1);
+        }
+
+        .skill-progress-item:hover .skill-header h5 {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--darker-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.8rem;
+            margin: 0 20px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .social-links a:hover {
+            background: var(--gradient-3);
+            color: white;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            /* Hero Section Mobile */
+            .hero {
+                min-height: 90vh;
+                padding: 80px 0 40px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+                line-height: 1.2;
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero .lead {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .profile-img {
+                width: 100px;
+                height: 180px;
+                font-size: 4rem;
+                margin-bottom: 30px;
+            }
+            
+            /* Navigation Mobile */
+            .navbar-brand {
+                font-size: 1.3rem;
+            }
+            
+            .navbar-nav {
+                text-align: center;
+                padding: 20px 0;
+            }
+            
+            .nav-link {
+                padding: 10px 0 !important;
+                font-size: 1.1rem;
+            }
+            
+            /* Section Titles Mobile */
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            /* About Section Mobile */
+            .about .row > div:first-child {
+                margin-bottom: 30px;
+            }
+            
+            .skill-item {
+                margin-bottom: 15px;
+                padding: 20px 15px;
+            }
+            
+            .skill-item i {
+                font-size: 2.5rem;
+            }
+            
+            /* Skills Progress Mobile */
+            .skill-progress-item {
+                margin-bottom: 25px;
+            }
+            
+            .skill-header h5 {
+                font-size: 1rem;
+            }
+            
+            /* Projects Mobile */
+            .project-card {
+                margin-bottom: 25px;
+            }
+            
+            .project-img {
+                height: 150px;
+                font-size: 2.5rem;
+            }
+            
+            .project-content {
+                padding: 20px;
+            }
+            
+            .project-title {
+                font-size: 1.2rem;
+            }
+            
+            .tech-tag {
+                font-size: 0.75rem;
+                padding: 4px 10px;
+            }
+            
+            /* Contact Section Mobile */
+            .contact-item {
+                margin-bottom: 15px;
+                padding: 25px 20px;
+            }
+            
+            .contact-item i {
+                font-size: 2rem;
+            }
+            
+            /* Buttons Mobile */
+            .btn-custom {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+            
+            /* Social Links Mobile */
+            .social-links a {
+                font-size: 1.5rem;
+                margin: 0 10px;
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            /* Extra Small Devices */
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero .lead {
+                font-size: 1rem;
+            }
+            
+            .profile-img {
+                width: 300px ;
+                height: 300px  ;
+                margin-top: 100px;
+                font-size: 3.5rem;
+            }
+            .profile-img img{
+                width: 300px;
+                height: 300px;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .section {
+                padding: 40px 0;
+            }
+            
+            .skill-item {
+                padding: 15px;
+            }
+            
+            .skill-item i {
+                font-size: 2rem;
+            }
+            
+            .project-img {
+                height: 120px;
+                font-size: 2rem;
+            }
+            
+            .project-content {
+                padding: 15px;
+            }
+            
+            .contact-item {
+                padding: 20px 15px;
+            }
+            
+            .btn-custom {
+                padding: 10px 0px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">Karad Shubham</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1>Full Stack Developer</h1>
+                    <p class="lead">Passionate about creating amazing web experiences with modern technologies. Ready to learn, grow, and contribute to innovative projects.</p>
+                    <a href="#projects" class="btn btn-custom btn-lg " style="width: 200px;">View My Work</a>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="profile-img mx-auto">
+                        <img src="my_image.png" >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="row">
+                <div class="col-lg-6 fade-in" style="position: relative; z-index: 2;">
+                    <h3 style="color: var(--text-light); background: var(--gradient-3); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Hello! I'm Shubham Karad</h3>
+                    <p style="color: rgba(228, 230, 234, 0.9);">I'm a passionate full stack developer with expertise in both frontend and backend technologies. Currently pursuing my degree in Computer Science, I love turning innovative ideas into reality through clean, efficient, and scalable code.</p>
+                    <p style="color: rgba(228, 230, 234, 0.9);">I'm a first year Msc(Computer Science) student at Savitribai Phule Pune University with a passion for web development and software engineering. My journey began with curiosity about how websites work, and it has evolved into a deep love for creating digital experiences.</p>
+                    <div class="mt-4">
+                        <a href="https://drive.google.com/file/d/1MPe6pTUT1BJKZsF-GkPRMzahRZkSTWV_/view?usp=drive_link" class="btn btn-custom"style="width: 200px; font-size:20px;">Check Resume</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="skill-item fade-in">
+                                <i class="fab fa-react"></i>
+                                <h5>Frontend Frameworks</h5>
+                                <p>Bootstrap , React, jQuery , Json</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="skill-item fade-in">
+                                <i class="fab fa-js-square"></i>
+                                <h5>Languages</h5>
+                                <p>Html , Css , JavaScript, Python,</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="skill-item fade-in">
+                                <i class="fas fa-server"></i>
+                                <h5>Backend & APIs</h5>
+                                <p>Node.js, Express,</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="skill-item fade-in">
+                                <i class="fas fa-cloud"></i>
+                                <h5>Database</h5>
+                                <p>MySQL , MongoDB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Progress Section -->
+    <section id="skills" class="section skills-progress">
+        <div class="container">
+            <h2 class="section-title fade-in">Technical Proficiency</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="skill-progress-item fade-in">
+                        <div class="skill-header">
+                            <h5>Html & Css</h5>
+                            <span class="skill-percentage">95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <input type="range" min="0" max="100" value="95" class="skill-range" id="react-skill" disabled>
+                            <div class="skill-fill" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-progress-item fade-in">
+                        <div class="skill-header">
+                            <h5>JavaScript </h5>
+                            <span class="skill-percentage">82%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <input type="range" min="0" max="100" value="82" class="skill-range" id="js-skill" disabled>
+                            <div class="skill-fill" style="width: 82%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-progress-item fade-in">
+                        <div class="skill-header">
+                            <h5>Node.js & Express</h5>
+                            <span class="skill-percentage">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <input type="range" min="0" max="100" value="90" class="skill-range" id="node-skill" disabled>
+                            <div class="skill-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-progress-item fade-in">
+                        <div class="skill-header">
+                            <h5>Python </h5>
+                            <span class="skill-percentage">60%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <input type="range" min="0" max="100" value="60" class="skill-range" id="python-skill" disabled>
+                            <div class="skill-fill" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="skill-progress-item fade-in">
+                        <div class="skill-header">
+                            <h5>MongoDB & MySQL</h5>
+                            <span class="skill-percentage">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <input type="range" min="0" max="100" value="85" class="skill-range" id="db-skill" disabled>
+                            <div class="skill-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-progress-item fade-in">
+                        <div class="skill-header">
+                            <h5>React</h5>
+                            <span class="skill-percentage">78%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <input type="range" min="0" max="100" value="78" class="skill-range" id="aws-skill" disabled>
+                            <div class="skill-fill" style="width: 78%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-progress-item fade-in">
+                        <div class="skill-header">
+                            <h5>jQuery & Json</h5>
+                            <span class="skill-percentage">93%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <input type="range" min="0" max="100" value="93" class="skill-range" id="docker-skill" disabled>
+                            <div class="skill-fill" style="width: 93%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-progress-item fade-in">
+                        <div class="skill-header">
+                            <h5>Bootstrap</h5>
+                            <span class="skill-percentage">97%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <input type="range" min="0" max="100" value="97" class="skill-range" id="api-skill" disabled>
+                            <div class="skill-fill" style="width: 97%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">My Projects</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card fade-in">
+                        <div class="project-img">
+                            <img src="https://market-resized.envatousercontent.com/previews/files/273990322/shoes-preview-new.jpg?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=93673ea6b13f5a440b1b67a48f4c85d84db6c1c22c17e27f1413c5356351af0b" alt="" class="img-fluid">
+                        </div>
+                        <div class="project-content">
+                            <h4 class="project-title">Shoes E-Commerce</h4>
+                            <p>"Developed a responsive Shoes E-commerce website with product listing, shopping cart, and secure checkout  functionality ,and payment gatway method. Implemented user-friendly design and smooth order management."</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Html</span>
+                                <span class="tech-tag">Css</span>
+                                <span class="tech-tag">Bootstrap</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">Express.js</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card fade-in">
+                        <div class="project-img">
+                            <img src="https://ibrinfotech.b-cdn.net/uploads/restaurant.jpg" alt="" class="img-fluid">
+                        </div>
+                        <div class="project-content">
+                            <h4 class="project-title mt-4">Resturent Management System</h4>
+                            <p>Eveloped a Restaurant Management System with features like digital menu, order management, table reservation, and billing. Designed with responsive UI and smooth restaurant operations.".</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">Bootstrap</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">Express.js</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card fade-in">
+                        <div class="project-img">
+                         <img src="https://cdn.prod.website-files.com/65fabbf8f7f7323a634a308c/66c478f331c8f9c5995f02ba_Group%201171275868.png" alt="" class="img-fluid">
+
+                        </div>
+                        <div class="project-content">
+                            <h4 class="project-title">College Management System</h4>
+                            <p>Designed and developed a College Management System to handle student registration, course management, attendance,assignment and result processing. Implemented with a responsive interface for efficient data handling."</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Html</span>
+                                <span class="tech-tag">Css</span>
+                                <span class="tech-tag">Bootstrap</span>
+                                <span class="tech-tag">Express.js</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Get In Touch</h2>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="contact-item fade-in">
+                        <i class="fas fa-envelope"></i>
+                        <h5>Email</h5>
+                        <p>skarad819@gmail.com</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-item fade-in">
+                        <i class="fas fa-phone"></i>
+                        <h5>Phone</h5>
+                        <p>+91 8208639756</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-item fade-in">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h5>Location</h5>
+                        <p>Ahmadnagar , Maharashtra</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="row mt-5">
+                <div class="col-lg-8 mx-auto">
+                    <div class="contact-form-container fade-in">
+                        <h3 class="form-title">Send Me a Message</h3>
+                        <p class="form-subtitle">I'd love to hear from you! Fill out the form below and I'll get back to you as soon as possible.</p>
+                        
+                        <form class="contact-form" id="contactForm" method="post" >
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" id="firstName" name="firstName" required>
+                                        <span class="form-bar"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" id="lastName" name="lastName" required>
+                                        <span class="form-bar"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" name="email" required>
+                                        <span class="form-bar"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" id="phone" name="phone">
+                                        <span class="form-bar"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="collaboration">Project Collaboration</option>
+                                    <option value="internship">Internship Opportunity</option>
+                                    <option value="freelance">Freelance Work</option>
+                                    <option value="consultation">Technical Consultation</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <span class="form-bar"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project or how I can help you..."></textarea>
+                                <span class="form-bar"></span>
+                            </div>
+                            
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" id="newsletter" name="newsletter">
+                                    <span class="checkmark"></span>
+                                    Subscribe to my newsletter for tech updates and project insights
+                                </label>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-custom btn-lg">
+                                    <span class="btn-text">Send Message</span>
+                                    <i class="fas fa-paper-plane btn-icon"></i>
+                                </button>
+                                <button type="reset" class="btn btn-outline-custom">
+                                    <i class="fas fa-redo"></i>
+                                    Reset Form
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div class="form-success" id="formSuccess">
+                            <i class="fas fa-check-circle"></i>
+                            <h4>Message Sent Successfully!</h4>
+                            <p>Thank you for reaching out. I'll get back to you within 24 hours.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links mb-3">
+                <a href="https://github.com/shubham9756/" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/shubham-karad-78475b361/"target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.facebook.com/share/1ZiAaWEdgB/"target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/shubham_karad_9756?igsh=MXczaGpqenBzaGljMA=="target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2025 Shubham Karad. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(10, 14, 39, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 212, 255, 0.2)';
+            } else {
+                navbar.style.background = 'rgba(10, 14, 39, 0.95)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0, 212, 255, 0.1)';
+            }
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Active navigation link highlighting
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Typing animation for hero text
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing animation when page loads
+        window.addEventListener('load', function() {
+            const heroTitle = document.querySelector('.hero h1');
+            const originalText = heroTitle.textContent;
+            setTimeout(() => {
+                typeWriter(heroTitle, originalText, 80);
+            }, 500);
+        });
+
+        // Add hover effects to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add click animation to buttons
+        document.querySelectorAll('.btn-custom').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                let ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+                
+                let x = e.clientX - e.target.offsetLeft;
+                let y = e.clientY - e.target.offsetTop;
+                
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Animate skill bars when they come into view
+        const skillObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillFill = entry.target.querySelector('.skill-fill');
+                    const percentage = entry.target.querySelector('.skill-percentage').textContent;
+                    const numericValue = parseInt(percentage);
+                    
+                    // Reset width to 0 first
+                    skillFill.style.width = '0%';
+                    
+                    // Animate to target width
+                    setTimeout(() => {
+                        skillFill.style.width = numericValue + '%';
+                    }, 200);
+                    
+                    // Animate percentage counter
+                    let currentValue = 0;
+                    const increment = numericValue / 50; // 50 steps for smooth animation
+                    const percentageElement = entry.target.querySelector('.skill-percentage');
+                    
+                    const counter = setInterval(() => {
+                        currentValue += increment;
+                        if (currentValue >= numericValue) {
+                            currentValue = numericValue;
+                            clearInterval(counter);
+                        }
+                        percentageElement.textContent = Math.round(currentValue) + '%';
+                    }, 40);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Observe all skill progress items
+        document.querySelectorAll('.skill-progress-item').forEach(item => {
+            skillObserver.observe(item);
+        });
+
+        // Add interactive hover effects to skill bars
+        document.querySelectorAll('.skill-progress-item').forEach(item => {
+            const skillFill = item.querySelector('.skill-fill');
+            const originalWidth = skillFill.style.width;
+            
+            item.addEventListener('mouseenter', function() {
+                skillFill.style.boxShadow = '0 0 30px rgba(0, 212, 255, 0.6)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                skillFill.style.boxShadow = '0 0 20px rgba(0, 212, 255, 0.4)';
+            });
+        });
+
+        // Contact Form Functionality
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+
+        // Form validation
+        function validateForm() {
+            let isValid = true;
+            const requiredFields = ['firstName', 'lastName', 'email', 'subject', 'message'];
+            
+            requiredFields.forEach(fieldName => {
+                const field = document.getElementById(fieldName);
+                const value = field.value.trim();
+                
+                // Remove previous error states
+                field.classList.remove('error');
+                const existingError = field.parentNode.querySelector('.error-message');
+                if (existingError) {
+                    existingError.remove();
+                }
+                
+                if (!value) {
+                    showFieldError(field, `${getFieldLabel(fieldName)} is required`);
+                    isValid = false;
+                } else if (fieldName === 'email' && !isValidEmail(value)) {
+                    showFieldError(field, 'Please enter a valid email address');
+                    isValid = false;
+                }
+            });
+            
+            return isValid;
+        }
+
+        function showFieldError(field, message) {
+            field.classList.add('error');
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message show';
+            errorDiv.textContent = message;
+            field.parentNode.appendChild(errorDiv);
+        }
+
+        function getFieldLabel(fieldName) {
+            const labels = {
+                firstName: 'First Name',
+                lastName: 'Last Name',
+                email: 'Email Address',
+                subject: 'Subject',
+                message: 'Message'
+            };
+            return labels[fieldName] || fieldName;
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Form submission
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) {
+                return;
+            }
+            
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.classList.add('loading');
+            submitBtn.innerHTML = '<span class="btn-text">Sending...</span>';
+            
+            // Simulate form submission (replace with actual form handling)
+            setTimeout(() => {
+                // Hide form and show success message
+                contactForm.style.display = 'none';
+                formSuccess.classList.add('show');
+                
+                // Reset loading state
+                submitBtn.classList.remove('loading');
+                submitBtn.innerHTML = originalText;
+                
+                // Auto-hide success message and show form again after 5 seconds
+                setTimeout(() => {
+                    formSuccess.classList.remove('show');
+                    contactForm.style.display = 'block';
+                    contactForm.reset();
+                }, 5000);
+                
+            }, 2000);
+        });
+
+        // Form reset functionality
+        contactForm.addEventListener('reset', function() {
+            // Remove all error states
+            document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(field => {
+                field.classList.remove('error');
+            });
+            
+            document.querySelectorAll('.error-message').forEach(error => {
+                error.remove();
+            });
+            
+            // Hide success message if visible
+            formSuccess.classList.remove('show');
+            contactForm.style.display = 'block';
+        });
+
+        // Real-time validation
+        document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(field => {
+            field.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value.trim()) {
+                    showFieldError(this, `${getFieldLabel(this.name)} is required`);
+                } else if (this.type === 'email' && this.value && !isValidEmail(this.value)) {
+                    showFieldError(this, 'Please enter a valid email address');
+                } else {
+                    // Remove error if field is now valid
+                    this.classList.remove('error');
+                    const existingError = this.parentNode.querySelector('.error-message');
+                    if (existingError) {
+                        existingError.remove();
+                    }
+                }
+            });
+            
+            field.addEventListener('input', function() {
+                // Remove error state when user starts typing
+                if (this.classList.contains('error')) {
+                    this.classList.remove('error');
+                    const existingError = this.parentNode.querySelector('.error-message');
+                    if (existingError) {
+                        existingError.remove();
+                    }
+                }
+            });
+        });
+
+        // Add floating label effect
+        document.querySelectorAll('.form-group input, .form-group textarea').forEach(field => {
+            field.addEventListener('focus', function() {
+                this.parentNode.classList.add('focused');
+            });
+            
+            field.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentNode.classList.remove('focused');
+                }
+            });
+            
+            // Check if field has value on page load
+            if (field.value) {
+                field.parentNode.classList.add('focused');
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9769963991bcd7fb',t:'MTc1NjQ0NDY5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
